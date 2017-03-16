@@ -1,5 +1,5 @@
 syntax = "proto2";
-package gz_mav_msgs;
+package gz_mav_msgs_rotors;
 
 import "Header.proto";
 import "vector3d.proto";

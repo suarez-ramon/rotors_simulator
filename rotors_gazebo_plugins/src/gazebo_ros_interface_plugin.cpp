@@ -187,7 +187,7 @@ void GazeboRosInterfacePlugin::GzConnectGazeboToRosTopicMsgCallback(
 
   switch (gz_connect_gazebo_to_ros_topic_msg->msgtype()) {
     case gz_std_msgs::ConnectGazeboToRosTopic::ACTUATORS:
-      ConnectHelper<gz_sensor_msgs::Actuators, mav_msgs::Actuators>(
+      ConnectHelper<gz_sensor_msgs::Actuators, mav_msgs_rotors::Actuators>(
           &GazeboRosInterfacePlugin::GzActuatorsMsgCallback, this,
           gazeboNamespace, gazeboTopicName, rosTopicName, gz_node_handle_);
       break;
@@ -252,7 +252,7 @@ void GazeboRosInterfacePlugin::GzConnectGazeboToRosTopicMsgCallback(
           gazeboNamespace, gazeboTopicName, rosTopicName, gz_node_handle_);
       break;
     case gz_std_msgs::ConnectGazeboToRosTopic::WIND_SPEED:
-      ConnectHelper<gz_mav_msgs::WindSpeed,
+      ConnectHelper<gz_mav_msgs_rotors::WindSpeed,
                     rotors_comm::WindSpeed>(
           &GazeboRosInterfacePlugin::GzWindSpeedMsgCallback, this,
           gazeboNamespace, gazeboTopicName, rosTopicName, gz_node_handle_);
@@ -288,7 +288,7 @@ void GazeboRosInterfacePlugin::GzConnectRosToGazeboTopicMsgCallback(
 
       // Create ROS subscriber.
       ros::Subscriber ros_subscriber =
-          ros_node_handle_->subscribe<mav_msgs::Actuators>(
+          ros_node_handle_->subscribe<mav_msgs_rotors::Actuators>(
               gz_connect_ros_to_gazebo_topic_msg->ros_topic(), 1,
               boost::bind(&GazeboRosInterfacePlugin::RosActuatorsMsgCallback,
                           this, _1, gz_publisher_ptr));
@@ -301,12 +301,12 @@ void GazeboRosInterfacePlugin::GzConnectRosToGazeboTopicMsgCallback(
     }
     case gz_std_msgs::ConnectRosToGazeboTopic::COMMAND_MOTOR_SPEED: {
       gazebo::transport::PublisherPtr gz_publisher_ptr =
-          gz_node_handle_->Advertise<gz_mav_msgs::CommandMotorSpeed>(
+          gz_node_handle_->Advertise<gz_mav_msgs_rotors::CommandMotorSpeed>(
               gz_connect_ros_to_gazebo_topic_msg->gazebo_topic(), 1);
 
       // Create ROS subscriber.
       ros::Subscriber ros_subscriber =
-          ros_node_handle_->subscribe<mav_msgs::Actuators>(
+          ros_node_handle_->subscribe<mav_msgs_rotors::Actuators>(
               gz_connect_ros_to_gazebo_topic_msg->ros_topic(), 1,
               boost::bind(
                   &GazeboRosInterfacePlugin::RosCommandMotorSpeedMsgCallback,
@@ -320,7 +320,7 @@ void GazeboRosInterfacePlugin::GzConnectRosToGazeboTopicMsgCallback(
     }
     case gz_std_msgs::ConnectRosToGazeboTopic::WIND_SPEED: {
       gazebo::transport::PublisherPtr gz_publisher_ptr =
-          gz_node_handle_->Advertise<gz_mav_msgs::WindSpeed>(
+          gz_node_handle_->Advertise<gz_mav_msgs_rotors::WindSpeed>(
               gz_connect_ros_to_gazebo_topic_msg->gazebo_topic(), 1);
 
       // Create ROS subscriber.
@@ -867,7 +867,7 @@ void GazeboRosInterfacePlugin::GzWrenchStampedMsgCallback(
 //===========================================================================//
 
 void GazeboRosInterfacePlugin::RosActuatorsMsgCallback(
-    const mav_msgs::ActuatorsConstPtr& ros_actuators_msg_ptr,
+    const mav_msgs_rotors::ActuatorsConstPtr& ros_actuators_msg_ptr,
     gazebo::transport::PublisherPtr gz_publisher_ptr) {
   // Convert ROS message to Gazebo message
 
@@ -886,11 +886,11 @@ void GazeboRosInterfacePlugin::RosActuatorsMsgCallback(
 }
 
 void GazeboRosInterfacePlugin::RosCommandMotorSpeedMsgCallback(
-    const mav_msgs::ActuatorsConstPtr& ros_actuators_msg_ptr,
+    const mav_msgs_rotors::ActuatorsConstPtr& ros_actuators_msg_ptr,
     gazebo::transport::PublisherPtr gz_publisher_ptr) {
   // Convert ROS message to Gazebo message
 
-  gz_mav_msgs::CommandMotorSpeed gz_command_motor_speed_msg;
+  gz_mav_msgs_rotors::CommandMotorSpeed gz_command_motor_speed_msg;
 
   for (int i = 0; i < ros_actuators_msg_ptr->angular_velocities.size(); i++) {
     gz_command_motor_speed_msg.add_motor_speed(
@@ -905,7 +905,7 @@ void GazeboRosInterfacePlugin::RosWindSpeedMsgCallback(
     const rotors_comm::WindSpeedConstPtr& ros_wind_speed_msg_ptr,
     gazebo::transport::PublisherPtr gz_publisher_ptr) {
   // Convert ROS message to Gazebo message
-  gz_mav_msgs::WindSpeed gz_wind_speed_msg;
+  gz_mav_msgs_rotors::WindSpeed gz_wind_speed_msg;
 
   ConvertHeaderRosToGz(ros_wind_speed_msg_ptr->header,
                        gz_wind_speed_msg.mutable_header());
