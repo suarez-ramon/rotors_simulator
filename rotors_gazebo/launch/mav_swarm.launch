@@ -16,7 +16,8 @@
       <arg name="enable_logging" value="$(arg enable_logging)" />
       <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
       <arg name="log_file" value="$(arg mav_name)$(arg drone_swarm_number)"/>
-      <arg name="y" value="$(arg drone_swarm_number)"/>
+      <!-- <arg name="y" value="$(arg drone_swarm_number)"/> -->
+      <arg name="y" value="0"/>
     </include>
     <node name="roll_pitch_yawrate_thrust_controller_node" pkg="rotors_control" type="roll_pitch_yawrate_thrust_controller_node" output="screen">
       <rosparam
