@@ -1,5 +1,5 @@
 <launch>
-  <arg name="world_name" default="basic_rl"/>
+  <arg name="world_name" default="basic"/>
   <arg name="enable_logging" default="false"/>
   <arg name="enable_ground_truth" default="true"/>
   <arg name="drone_swarm_number" default="1"/>
