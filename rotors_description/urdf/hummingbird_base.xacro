@@ -48,7 +48,13 @@
       wait_to_record_bag="$(arg wait_to_record_bag)" />
   </xacro:if>
 
-  <!-- <xacro:camera_macro
+
+  <gazebo reference="${namespace}/base_link">
+    <mu1>0.99</mu1>
+    <mu2>0.99</mu2>
+  </gazebo>
+
+  <!--<xacro:camera_macro
     namespace="${namespace}"
     parent_link="${namespace}/base_link"
     camera_suffix="bottom"
@@ -65,6 +71,42 @@
     <box size="0.002 0.005 0.005" />
     <origin xyz="0 0 -0.05" rpy="0 1.57 0" />
   </xacro:camera_macro>-->
+
+<!--Contact sensor 1 Laser 
+<joint name="contact_sensor_1_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 -0.1" rpy="0 0 0"/>
+    <parent link="${namespace}/base_link"/>
+    <child link="contact_sensor_1_link"/>
+  </joint>
+
+   
+  <link name="contact_sensor_1_link">
+    <collision name="contact_sensor_collision_1">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.1 0.1 0.001"/>
+      </geometry>
+    </collision>
+
+    <visual name="contact_sensor_visual_1">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    	<box size="0.01 0.01 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <gazebo reference="contact_sensor_1_link">
+          <sensor name="contact_sensor_1" type="contact">
+		<plugin name="my_contact_plugin_1" filename="libgazebo_ros_bumper.so">
+			    <frameName>world</frameName>
+		</plugin>
+          <contact>
+            <collision>contact_sensor_collision_1_collision</collision>
+          </contact>
+      </sensor>
+  </gazebo>-->
 
 </robot>
 
