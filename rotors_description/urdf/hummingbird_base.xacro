@@ -48,6 +48,7 @@
       wait_to_record_bag="$(arg wait_to_record_bag)" />
   </xacro:if>
 
+
   <gazebo reference="${namespace}/base_link">
     <mu1>0.99</mu1>
     <mu2>0.99</mu2>
@@ -57,11 +58,11 @@
     namespace="${namespace}"
     parent_link="${namespace}/base_link"
     camera_suffix="bottom"
-    frame_rate="30"
-    horizontal_fov="2"
-    image_width="752"
+    frame_rate="50"
+    horizontal_fov="2.5"
+    image_width="640"
     image_height="480"
-    image_format="RGB8"
+    image_format="R8G8B8"
     min_distance="0.02"
     max_distance="50"
     noise_mean="0.0"
