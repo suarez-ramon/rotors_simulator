@@ -12,10 +12,19 @@
       <pose>0.0 -5.0 3.0 0 0.45 1.5707</pose>
       <static>1</static>
     </include>-->
-    <include>
+    <!--<include>
       <uri>model://landing_platform</uri>
       <pose>0.5 0 0 0 0 0</pose>
+    </include>-->
+     <!--<include>
+      <uri>model://obstacle_cylinder</uri>
+      <pose>0.5 0 0 0 0 0</pose>
     </include>
+    <include>
+      <uri>model://virtual_leader</uri>
+      <pose>0 0 0 0 0 0</pose>
+      <static>1</static>
+    </include>-->
    
     
     <!-- Only require one ROS interface plugin per world, as any other plugin can connect a Gazebo
