@@ -77,7 +77,7 @@ void GeotaggedImagesPlugin::Load(sensors::SensorPtr sensor, sdf::ElementPtr sdf)
     return;
   }
   scene_ = camera_->GetScene();
-  lastImageTime_ = scene_->GetSimTime();
+  lastImageTime_ = scene_->SimTime();
 
 #if GAZEBO_MAJOR_VERSION >= 7
   this->width_ = this->camera_->ImageWidth();
@@ -151,7 +151,7 @@ void GeotaggedImagesPlugin::OnNewFrame(const unsigned char * image)
   image = this->camera_->GetImageData(0);
 #endif
 
-  common::Time currentTime = scene_->GetSimTime();
+  common::Time currentTime = scene_->SimTime();
   if (currentTime.Double() - lastImageTime_.Double() < storeIntervalSec_) {
     return;
   }
