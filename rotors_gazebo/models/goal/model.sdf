@@ -1,8 +1,8 @@
 <?xml version='1.0'?>
 <sdf version='1.5'>
-  <model name='cylinder'>
+  <model name='goal'>
     <link name='link'>
-      <pose frame=''>0 0 0.15 0 -0 0</pose>
+      <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
         <mass>1</mass>
         <inertia>
@@ -17,30 +17,30 @@
       </inertial>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
-      <gravity>1</gravity>
+      <gravity>0</gravity>
       <visual name='visual'>
         <geometry>
           <cylinder>
-            <radius>0.125</radius>
-            <length>0.3</length>
+            <radius>0.07</radius>
+            <length>0.35</length>
           </cylinder>
         </geometry>
         <material>
           <script>
-            <name>Gazebo/Red</name>
+            <name>Gazebo/blue</name>
             <uri>file://media/materials/scripts/gazebo.material</uri>
           </script>
-          <ambient>1 0 0 1</ambient>
-          <diffuse>1 0 0 1</diffuse>
-          <specular>0.01 0 0 1</specular>
-          <emissive>0 0 0 1</emissive>
+          <ambient>0.3 0.3 0.3 1</ambient>
+          <diffuse>0.7 0.7 0.7 1</diffuse>
+          <specular>0.01 0.01 0.01 1</specular>
+          <emissive>0.6 0 0.6 1</emissive>
           <shader type='vertex'>
             <normal_map>__default__</normal_map>
           </shader>
         </material>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <cast_shadows>1</cast_shadows>
-        <transparency>0.0</transparency>
+        <transparency>0</transparency>
       </visual>
       <!--<collision name='collision'>
         <laser_retro>0</laser_retro>
@@ -90,7 +90,7 @@
         </surface>
       </collision>-->
     </link>
-    <static>1</static>
-    <allow_auto_disable>1</allow_auto_disable>
+    <static>0</static>
+    <allow_auto_disable>0</allow_auto_disable>
   </model>
 </sdf>
