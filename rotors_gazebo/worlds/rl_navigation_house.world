@@ -1,6 +1,11 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <world name="default">
+    <gui>
+      <camera name="user_camera">
+        <pose>-3.5 1.25 20 0 1.35 0</pose>
+      </camera>
+    </gui>
     <include>
       <uri>model://ground_plane</uri>
     </include>
@@ -51,10 +56,10 @@
       <uri>model://moving_cylinder</uri>
     </include> -->
 
-    <include>
+    <!-- <include>
       <pose>2.0 2.0 0 0 0 0</pose>
       <uri>model://obstacle_cylinder_big</uri>
-    </include>
+    </include> -->
 
     <include>
       <pose>0 0.0 0 0 0 0</pose>
@@ -63,7 +68,7 @@
 
     <include>
       <pose>0 0 0 0 0 0</pose>
-      <uri>model://house_3</uri>
+      <uri>model://house_6</uri>
     </include>
 
     <!-- <include>

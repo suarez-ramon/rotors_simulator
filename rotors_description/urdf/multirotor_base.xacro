@@ -82,7 +82,66 @@
         <rotorVelocitySlowdownSim>${rotor_velocity_slowdown_sim}</rotorVelocitySlowdownSim>
       </plugin>
     </gazebo>
+
+   
+
+
   </xacro:macro>
+
+  <!-- Macro to add an cylinder. -->
+  <xacro:macro name="cylinder_plugin_macro"
+    params="namespace parent_link color length_cylinder radius_cylinder *inertia *origin">
+    <!-- Cylinder link -->
+
+    <link name="${namespace}/cylinder_link">
+	<inertial>
+        <xacro:insert_block name="inertia" />
+        <mass value="0.001" />  <!-- [kg] -->
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </inertial>
+
+      <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+<geometry>
+	  <cylinder length="${length_cylinder}" radius="${radius_cylinder}" /> <!-- [m] -->
+</geometry>
+     
+      </visual>
+
+
+
+  
+    </link>
+	<gazebo reference="${namespace}/cylinder_link">
+      <material>Gazebo/${color}</material>
+    </gazebo>
+    
+    <!-- Cylinder joint -->
+    <joint name="${namespace}/cylinder_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent_link}" />
+      <child link="${namespace}/cylinder_link" />
+      <limit upper="0" lower="0" effort="0" velocity="0" />
+    </joint>
+  </xacro:macro>
+
+  <!-- Macro to add bumper sensor. -->
+  <xacro:macro name="bumper_plugin_macro"
+    params="namespace parent_link">
+    
+    <gazebo reference="${namespace}/base_link">
+	<sensor name="main_bumper" type="contact">
+    	<contact>
+       		<collision>${namespace}//base_link_inertia_collision</collision>
+    	</contact>
+    	<plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">   
+        	<bumperTopicName>bumper</bumperTopicName>
+        	<frameName>world</frameName>
+    	</plugin>
+	</sensor>
+    </gazebo>
+  </xacro:macro>
+
 
   <!-- Rotor joint and link -->
   <xacro:macro name="vertical_rotor"
