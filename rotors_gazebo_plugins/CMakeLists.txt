@@ -199,6 +199,110 @@ include_directories(${Eigen_INCLUDE_DIRS})
 
 # SORTED IN ALPHABETICAL ORDER (by "plugin" name, keep it this way!)
 
+#set(GAZEBO_LIBRARIES "BulletSoftBodyBulletDynamicsBulletCollisionLinearMath/usr/lib/x86_64-linux-gnu/libSimTKsimbody.so/usr/lib/x86_64-linux-gnu/libSimTKmath.so/usr/lib/x86_64-linux-gnu/libSimTKcommon.so/usr/lib/x86_64-linux-gnu/libblas.so/usr/lib/x86_64-linux-gnu/liblapack.so/usr/lib/x86_64-linux-gnu/libblas.sopthreadrtdlm/usr/lib/x86_64-linux-gnu/libgazebo.so/usr/lib/x86_64-linux-gnu/libgazebo_client.so/usr/lib/x86_64-linux-gnu/libgazebo_gui.so/usr/lib/x86_64-linux-gnu/libgazebo_sensors.so/usr/lib/x86_64-linux-gnu/libgazebo_rendering.so/usr/lib/x86_64-linux-gnu/libgazebo_physics.so/usr/lib/x86_64-linux-gnu/libgazebo_ode.so/usr/lib/x86_64-linux-gnu/libgazebo_transport.so/usr/lib/x86_64-linux-gnu/libgazebo_msgs.so/usr/lib/x86_64-linux-gnu/libgazebo_util.so/usr/lib/x86_64-linux-gnu/libgazebo_common.so/usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so/usr/lib/x86_64-linux-gnu/libgazebo_opcode.so/usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so/usr/lib/x86_64-linux-gnu/libboost_thread.so/usr/lib/x86_64-linux-gnu/libboost_signals.so/usr/lib/x86_64-linux-gnu/libboost_system.so/usr/lib/x86_64-linux-gnu/libboost_filesystem.so/usr/lib/x86_64-linux-gnu/libboost_program_options.so/usr/lib/x86_64-linux-gnu/libboost_regex.so/usr/lib/x86_64-linux-gnu/libboost_iostreams.so/usr/lib/x86_64-linux-gnu/libboost_date_time.so/usr/lib/x86_64-linux-gnu/libboost_chrono.so/usr/lib/x86_64-linux-gnu/libboost_atomic.so/usr/lib/x86_64-linux-gnu/libprotobuf.so-lpthread/usr/lib/x86_64-linux-gnu/libsdformat.so/usr/lib/x86_64-linux-gnu/libOgreMain.sodebug/usr/lib/x86_64-linux-gnu/libOgreMain.so/usr/lib/x86_64-linux-gnu/libboost_thread.so/usr/lib/x86_64-linux-gnu/libboost_date_time.so/usr/lib/x86_64-linux-gnu/libboost_system.so/usr/lib/x86_64-linux-gnu/libboost_atomic.so/usr/lib/x86_64-linux-gnu/libboost_chrono.so/usr/lib/x86_64-linux-gnu/libboost_chrono.sooptimized/usr/lib/x86_64-linux-gnu/libOgreTerrain.sodebug/usr/lib/x86_64-linux-gnu/libOgreTerrain.sooptimized/usr/lib/x86_64-linux-gnu/libOgrePaging.sodebug/usr/lib/x86_64-linux-gnu/libOgrePaging.so")
+#set(GAZEBO_LIBRARIES
+#    /usr/lib/x86_64-linux-gnu/libgazebo.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_client.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_util.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_common.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_math.so
+#    /usr/lib/x86_64-linux-gnu/libgazebo_ccd.so
+#    /usr/lib/x86_64-linux-gnu/libboost_thread.so
+#    /usr/lib/x86_64-linux-gnu/libboost_signals.so
+#    /usr/lib/x86_64-linux-gnu/libboost_system.so
+#    /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+#    /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+#    /usr/lib/x86_64-linux-gnu/libboost_regex.so
+#    /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
+#    /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+#    /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+#    /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+#    /usr/lib/x86_64-linux-gnu/libpthread.so
+#    /usr/lib/x86_64-linux-gnu/libprotobuf.so
+#    /usr/lib/x86_64-linux-gnu/libprotobuf.so
+#    -lpthread
+#    /usr/lib/x86_64-linux-gnu/libsdformat.so
+#    /usr/lib/x86_64-linux-gnu/libignition-math2.so
+#    /usr/lib/x86_64-linux-gnu/libOgreMain.so
+#    /usr/lib/x86_64-linux-gnu/libOgreMain.so
+#    /usr/lib/x86_64-linux-gnu/libboost_thread.so
+#    /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+#    /usr/lib/x86_64-linux-gnu/libboost_system.so
+#    /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+#    /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+#    /usr/lib/x86_64-linux-gnu/libpthread.so
+#    /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+#    /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+#    /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+#    /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+#    /usr/lib/x86_64-linux-gnu/libignition-math2.so
+#    )
+
+set(GAZEBO_LIBRARIES "")
+
+find_library(GAZEBO_LIBRARIES
+        NAMES
+                libgazebo.so
+                libgazebo_client.so
+                libgazebo_gui.so
+                libgazebo_sensors.so
+                libgazebo_rendering.so
+                libgazebo_physics.so
+                libgazebo_ode.so
+                libgazebo_transport.so
+                libgazebo_msgs.so
+                libgazebo_util.so
+                libgazebo_common.so
+                libgazebo_gimpact.so
+                libgazebo_opcode.so
+                libgazebo_opende_ou.so
+                libgazebo_math.so
+                libgazebo_ccd.so
+                libboost_thread.so
+                libboost_signals.so
+                libboost_system.so
+                libboost_filesystem.so
+                libboost_program_options.so
+                libboost_regex.so
+                libboost_iostreams.so
+                libboost_date_time.so
+                libboost_chrono.so
+                libboost_atomic.so
+                libpthread.so
+                libprotobuf.so
+                libprotobuf.so
+                libpthread.so
+                libsdformat.so
+                libignition-math2.so
+                libOgreMain.so
+                libOgreMain.so
+                libboost_thread.so
+                libboost_date_time.so
+                libboost_system.so
+                libboost_atomic.so
+                libboost_chrono.so
+                libpthread.so
+                libOgreTerrain.so
+                libOgreTerrain.so
+                libOgrePaging.so
+                libOgrePaging.so
+                libignition-math2.so
+        PATHS
+                /usr/lib/x86_64-linux-gnu
+)
+#message(STATUS "++++++++++++++++++++++++++++++++++++ CATKIN LIBS:" ${catkin_LIBRARIES})
+#set(catkin_LIBRARIES "/opt/ros/melodic/lib/libcv_bridge.so/usr/lib/x86_64-linux-gnu/libopencv_core.so.3.2.0/usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.3.2.0/usr/lib/x86_64-linux-gnu/libopencv_imgcodecs.so.3.2.0octomap_ros/opt/ros/melodic/lib/liboctomap.so/opt/ros/melodic/lib/liboctomath.so/opt/ros/melodic/lib/librosbag.so/opt/ros/melodic/lib/librosbag_storage.so/opt/ros/melodic/lib/libclass_loader.so/usr/lib/libPocoFoundation.so/usr/lib/x86_64-linux-gnu/libdl.so/opt/ros/melodic/lib/libroslib.so/opt/ros/melodic/lib/librospack.so/usr/lib/x86_64-linux-gnu/libpython2.7.so/usr/lib/x86_64-linux-gnu/libboost_program_options.so/usr/lib/x86_64-linux-gnu/libtinyxml2.so/opt/ros/melodic/lib/libroslz4.so/usr/lib/x86_64-linux-gnu/liblz4.so/opt/ros/melodic/lib/libtopic_tools.solee_position_controllerroll_pitch_yawrate_thrust_controller/opt/ros/melodic/lib/libtf.so/opt/ros/melodic/lib/libtf2_ros.so/opt/ros/melodic/lib/libactionlib.so/opt/ros/melodic/lib/libmessage_filters.so/opt/ros/melodic/lib/libroscpp.so/usr/lib/x86_64-linux-gnu/libboost_filesystem.so/usr/lib/x86_64-linux-gnu/libboost_signals.so/opt/ros/melodic/lib/libxmlrpcpp.so/opt/ros/melodic/lib/libtf2.so/opt/ros/melodic/lib/libroscpp_serialization.so/opt/ros/melodic/lib/librosconsole.so/opt/ros/melodic/lib/librosconsole_log4cxx.so/opt/ros/melodic/lib/librosconsole_backend_interface.so/usr/lib/x86_64-linux-gnu/liblog4cxx.so/usr/lib/x86_64-linux-gnu/libboost_regex.so/opt/ros/melodic/lib/librostime.so/opt/ros/melodic/lib/libcpp_common.so/usr/lib/x86_64-linux-gnu/libboost_system.so/usr/lib/x86_64-linux-gnu/libboost_thread.so/usr/lib/x86_64-linux-gnu/libboost_chrono.so/usr/lib/x86_64-linux-gnu/libboost_date_time.so/usr/lib/x86_64-linux-gnu/libboost_atomic.so/usr/lib/x86_64-linux-gnu/libpthread.so/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4")
+
 #========================================= BAG PLUGIN ===========================================//
 # Entire GazeboBagPlugin is a heavy ROS dependency, and so rather than passing messages to
 # GazeboRosInterfacePlugin, this entire library is only included if ROS is present.

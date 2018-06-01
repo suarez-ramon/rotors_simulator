@@ -28,7 +28,8 @@
 namespace gazebo {
 
 GazeboBagPlugin::~GazeboBagPlugin() {
-  event::Events::DisconnectWorldUpdateBegin(update_connection_);
+  // Not sure of this comment
+  //event::Events::DisconnectWorldUpdateBegin(update_connection_);
   if (node_handle_) {
     node_handle_->shutdown();
     delete node_handle_;
@@ -130,7 +131,7 @@ void GazeboBagPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
 
   // Get the contact manager.
   std::vector<std::string> collisions;
-  contact_mgr_ = world_->GetPhysicsEngine()->GetContactManager();
+  contact_mgr_ = world_->Physics()->GetContactManager();
   for (unsigned int i = 0; i < link_->GetCollisions().size(); ++i) {
     physics::CollisionPtr collision = link_->GetCollision(i);
     collisions.push_back(collision->GetScopedName());
@@ -157,7 +158,7 @@ void GazeboBagPlugin::OnUpdate(const common::UpdateInfo& _info) {
   }
 
   // Get the current simulation time.
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   LogWrenches(now);
   LogGroundTruth(now);
   LogMotorVelocities(now);
@@ -244,7 +245,8 @@ void GazeboBagPlugin::StopRecording() {
   wind_speed_sub_.shutdown();
 
   // Disconnect the update event.
-  event::Events::DisconnectWorldUpdateBegin(update_connection_);
+  // Not sure of this comment
+  //event::Events::DisconnectWorldUpdateBegin(update_connection_);
 
   // Close the bag.
   bag_.close();
@@ -256,35 +258,35 @@ void GazeboBagPlugin::StopRecording() {
 }
 
 void GazeboBagPlugin::ImuCallback(const sensor_msgs::ImuConstPtr& imu_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + imu_topic_, ros_now, imu_msg);
 }
 
 void GazeboBagPlugin::ExternalForceCallback(
     const geometry_msgs::WrenchStampedConstPtr& force_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + external_force_topic_, ros_now, force_msg);
 }
 
 void GazeboBagPlugin::WaypointCallback(
     const trajectory_msgs::MultiDOFJointTrajectoryConstPtr& trajectory_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + waypoint_topic_, ros_now, trajectory_msg);
 }
 
 void GazeboBagPlugin::CommandPoseCallback(
     const geometry_msgs::PoseStampedConstPtr& pose_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + command_pose_topic_, ros_now, pose_msg);
 }
 
 void GazeboBagPlugin::AttitudeThrustCallback(
     const mav_msgs_rotors::AttitudeThrustConstPtr& control_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + control_attitude_thrust_topic_, ros_now,
            control_msg);
@@ -292,21 +294,21 @@ void GazeboBagPlugin::AttitudeThrustCallback(
 
 void GazeboBagPlugin::ActuatorsCallback(
     const mav_msgs_rotors::ActuatorsConstPtr& control_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + control_motor_speed_topic_, ros_now, control_msg);
 }
 
 void GazeboBagPlugin::RateThrustCallback(
     const mav_msgs_rotors::RateThrustConstPtr& control_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + control_rate_thrust_topic_, ros_now, control_msg);
 }
 
 void GazeboBagPlugin::WindSpeedCallback(
     const rotors_comm::WindSpeedConstPtr& wind_speed_msg) {
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
   ros::Time ros_now = ros::Time(now.sec, now.nsec);
   writeBag(namespace_ + "/" + wind_speed_topic_, ros_now, wind_speed_msg);
 }

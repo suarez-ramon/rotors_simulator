@@ -33,7 +33,8 @@ GazeboRosInterfacePlugin::GazeboRosInterfacePlugin()
     : WorldPlugin(), gz_node_handle_(0), ros_node_handle_(0) {}
 
 GazeboRosInterfacePlugin::~GazeboRosInterfacePlugin() {
-  event::Events::DisconnectWorldUpdateBegin(updateConnection_);
+  // Not sure of this comment
+  //event::Events::DisconnectWorldUpdateBegin(updateConnection_);
 
   // Shutdown and delete ROS node handle
   if (ros_node_handle_) {

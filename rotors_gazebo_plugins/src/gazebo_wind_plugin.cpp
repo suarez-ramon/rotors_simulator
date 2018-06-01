@@ -26,7 +26,8 @@
 namespace gazebo {
 
 GazeboWindPlugin::~GazeboWindPlugin() {
-  event::Events::DisconnectWorldUpdateBegin(update_connection_);
+  // Not sure of this comment
+  //event::Events::DisconnectWorldUpdateBegin(update_connection_);
 }
 
 void GazeboWindPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
@@ -57,7 +58,7 @@ void GazeboWindPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
   node_handle_->Init();
 
   if (_sdf->HasElement("xyzOffset"))
-    xyz_offset_ = _sdf->GetElement("xyzOffset")->Get<math::Vector3>();
+    xyz_offset_ = _sdf->GetElement("xyzOffset")->Get<ignition::math::Vector3d>();
   else
     gzerr << "[gazebo_wind_plugin] Please specify a xyzOffset.\n";
 
@@ -72,7 +73,7 @@ void GazeboWindPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
                       wind_force_mean_);
   getSdfParam<double>(_sdf, "windForceVariance", wind_force_variance_,
                       wind_force_variance_);
-  getSdfParam<math::Vector3>(_sdf, "windDirection", wind_direction_,
+  getSdfParam<ignition::math::Vector3d>(_sdf, "windDirection", wind_direction_,
                              wind_direction_);
   // Get the wind gust params from SDF.
   getSdfParam<double>(_sdf, "windGustStart", wind_gust_start, wind_gust_start);
@@ -82,7 +83,7 @@ void GazeboWindPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf) {
                       wind_gust_force_mean_);
   getSdfParam<double>(_sdf, "windGustForceVariance", wind_gust_force_variance_,
                       wind_gust_force_variance_);
-  getSdfParam<math::Vector3>(_sdf, "windGustDirection", wind_gust_direction_,
+  getSdfParam<ignition::math::Vector3d>(_sdf, "windGustDirection", wind_gust_direction_,
                              wind_gust_direction_);
   // Get the wind speed params from SDF.
   getSdfParam<double>(_sdf, "windSpeedMean", wind_speed_mean_,
@@ -118,15 +119,15 @@ void GazeboWindPlugin::OnUpdate(const common::UpdateInfo& _info) {
   }
 
   // Get the current simulation time.
-  common::Time now = world_->GetSimTime();
+  common::Time now = world_->SimTime();
 
   // Calculate the wind force.
   double wind_strength = wind_force_mean_;
-  math::Vector3 wind = wind_strength * wind_direction_;
+  ignition::math::Vector3d wind = wind_strength * wind_direction_;
   // Apply a force from the constant wind to the link.
   link_->AddForceAtRelativePosition(wind, xyz_offset_);
 
-  math::Vector3 wind_gust(0, 0, 0);
+  ignition::math::Vector3d wind_gust(0, 0, 0);
   // Calculate the wind gust force.
   if (now >= wind_gust_start_ && now < wind_gust_end_) {
     double wind_gust_strength = wind_gust_force_mean_;
@@ -139,12 +140,12 @@ void GazeboWindPlugin::OnUpdate(const common::UpdateInfo& _info) {
   wrench_stamped_msg_.mutable_header()->mutable_stamp()->set_sec(now.sec);
   wrench_stamped_msg_.mutable_header()->mutable_stamp()->set_nsec(now.nsec);
 
-  wrench_stamped_msg_.mutable_wrench()->mutable_force()->set_x(wind.x +
-                                                               wind_gust.x);
-  wrench_stamped_msg_.mutable_wrench()->mutable_force()->set_y(wind.y +
-                                                               wind_gust.y);
-  wrench_stamped_msg_.mutable_wrench()->mutable_force()->set_z(wind.z +
-                                                               wind_gust.z);
+  wrench_stamped_msg_.mutable_wrench()->mutable_force()->set_x(wind.X() +
+                                                               wind_gust.X());
+  wrench_stamped_msg_.mutable_wrench()->mutable_force()->set_y(wind.Y() +
+                                                               wind_gust.Y());
+  wrench_stamped_msg_.mutable_wrench()->mutable_force()->set_z(wind.Z() +
+                                                               wind_gust.Z());
 
   // No torque due to wind, set x,y and z to 0.
   wrench_stamped_msg_.mutable_wrench()->mutable_torque()->set_x(0);
@@ -155,15 +156,15 @@ void GazeboWindPlugin::OnUpdate(const common::UpdateInfo& _info) {
 
   // Calculate the wind speed.
   double wind_speed = wind_speed_mean_;
-  math::Vector3 wind_velocity = wind_speed * wind_direction_;
+  ignition::math::Vector3d wind_velocity = wind_speed * wind_direction_;
 
   wind_speed_msg_.mutable_header()->set_frame_id(frame_id_);
   wind_speed_msg_.mutable_header()->mutable_stamp()->set_sec(now.sec);
   wind_speed_msg_.mutable_header()->mutable_stamp()->set_nsec(now.nsec);
 
-  wind_speed_msg_.mutable_velocity()->set_x(wind_velocity.x);
-  wind_speed_msg_.mutable_velocity()->set_y(wind_velocity.y);
-  wind_speed_msg_.mutable_velocity()->set_z(wind_velocity.z);
+  wind_speed_msg_.mutable_velocity()->set_x(wind_velocity.X());
+  wind_speed_msg_.mutable_velocity()->set_y(wind_velocity.Y());
+  wind_speed_msg_.mutable_velocity()->set_z(wind_velocity.Z());
 
   wind_speed_pub_->Publish(wind_speed_msg_);
 }

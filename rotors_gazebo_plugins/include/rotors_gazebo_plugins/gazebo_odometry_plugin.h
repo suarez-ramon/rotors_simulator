@@ -29,6 +29,7 @@
 #include <stdio.h>
 
 #include <boost/bind.hpp>
+#include <boost/array.hpp>
 #include <gazebo/common/common.hh>
 #include <gazebo/common/Plugin.hh>
 #include <gazebo/gazebo.hh>
