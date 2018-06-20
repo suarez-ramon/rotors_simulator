@@ -1,26 +1,38 @@
+<?xml version="1.0" ?>
 <sdf version='1.6'>
   <world name='default'>
-      <include>
+    <include>
       <uri>model://ground_plane</uri>
     </include>
     <include>
       <uri>model://sun</uri>
     </include>
 
-    <include>
+   <include>
       <name>fixed_gate 1</name>
       <uri>model://fixed_gate</uri>
-      <pose>3.5 0 0 0 0 0</pose>
+      <pose>3.5 -0.5 0 0 0 0</pose>
     </include>
     <include>
       <name>fixed_gate 2</name>
       <uri>model://fixed_gate</uri>
-      <pose>7 0 0 0 -0 0</pose>
+      <pose>8.5 -0.5 0 0 -0 0</pose>
     </include>
     <include>
       <name>fixed_gate 3</name>
       <uri>model://fixed_gate</uri>
-      <pose>10 -4 0 0 -0 -1.57</pose>
+      <pose>11 -3.5 0 0 -0 -1.57</pose>
+    </include>
+
+    <include>
+      <name>fixed_gate 4</name>
+      <uri>model://fixed_gate</uri>
+      <pose>8.5 -6.5 0 0 -0 3.14</pose>
+    </include>
+    <include>
+      <name>fixed_gate 5</name>
+      <uri>model://fixed_gate</uri>
+      <pose>3.5 -6.5 0 0 -0 3.14</pose>
     </include>
 
     <include>
@@ -28,6 +40,20 @@
       <uri>model://wall_adr</uri>
       <pose>0 0 0 0 -0 0</pose>
     </include>
+		
+		<include>
+      <name>jungle_gym</name>
+      <uri>model://jungle_gym</uri>
+      <pose>2 -2.5 0 0 -0 3.14</pose>
+    </include>
+
+		<include>
+      <name>dynamic_gate</name>
+      <uri>model://dynamic_gate</uri>
+      <pose>6.5 -3.5 0 0 -0 -1.57</pose>
+    </include>
+
+
 
   <plugin name='ros_interface_plugin' filename='librotors_gazebo_ros_interface_plugin.so'/>
     <light name='sun' type='directional'>

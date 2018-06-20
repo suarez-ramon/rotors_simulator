@@ -17,7 +17,6 @@ project(rotors_gazebo_plugins)
 
 #message(STATUS "rotors_gazebo_plugins CMakeLists.txt called.")
 
-
 # =============================================================================================== #
 # ========================== SET DEFAULTS FOR PASSED-IN VARIABLES =============================== #
 # =============================================================================================== #
@@ -360,7 +359,7 @@ if(BUILD_OPTICAL_FLOW_PLUGIN)
     message(FATAL_ERROR "Gazebo version needs to be >= v5.x. You specified BUILD_OPTICAL_FLOW_PLUGIN=TRUE, but Gazebo version was less than v5.x.")
   endif()
 
-  find_package(Boost 1.40.0 REQUIRED timer)
+  find_package(Boost 1.54 REQUIRED timer)
 
   # OpticalFlow needs to be built and installed by the calling script, as it is very
   # unlikely that this package already exists on the users computer.
@@ -397,6 +396,29 @@ if (NOT NO_ROS)
 endif()
 list(APPEND targets_to_install rotors_gazebo_wind_plugin)
 
+#========================================= WIND GUST PLUGIN ==========================================//
+add_library(rotors_gazebo_wind_gust_plugin SHARED src/gazebo_wind_gust_plugin.cpp)
+target_link_libraries(rotors_gazebo_wind_gust_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+if (NOT NO_ROS)
+  add_dependencies(rotors_gazebo_wind_gust_plugin ${catkin_EXPORTED_TARGETS})
+endif()
+list(APPEND targets_to_install rotors_gazebo_wind_gust_plugin)
+
+#========================================= RANDOM POSITION PLUGIN ==========================================//
+add_library(rotors_gazebo_random_position_plugin SHARED src/gazebo_random_position_plugin.cpp)
+target_link_libraries(rotors_gazebo_random_position_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+if (NOT NO_ROS)
+  add_dependencies(rotors_gazebo_random_position_plugin ${catkin_EXPORTED_TARGETS})
+endif()
+list(APPEND targets_to_install rotors_gazebo_random_position_plugin)
+
+#========================================= ANGULAR VELOCITY PLUGIN ==========================================//
+add_library(rotors_gazebo_angular_vel_plugin SHARED src/gazebo_angular_vel_plugin.cpp)
+target_link_libraries(rotors_gazebo_angular_vel_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+if (NOT NO_ROS)
+  add_dependencies(rotors_gazebo_angular_vel_plugin ${catkin_EXPORTED_TARGETS})
+endif()
+list(APPEND targets_to_install rotors_gazebo_angular_vel_plugin)
 # =============================================================================================== #
 # ======================================= EXTERNAL LIBRARIES ==================================== #
 # =============================================================================================== #
