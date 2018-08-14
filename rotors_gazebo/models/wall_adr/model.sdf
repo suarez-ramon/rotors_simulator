@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <model name="wall_adr">
-    <static>0</static>
+    <static>1</static>
     <link name="link0">
-			<pose frame=''>6.35 2.1 0 0 -0 0</pose>
+			<pose frame=''>5.85 2.1 2 0 -0 0</pose>
         <collision name="box_collision">
           <geometry>
             <box>
-              <size>15 1 5</size>
+              <size>15 1 4</size>
             </box>
           </geometry>
       <surface>
@@ -23,7 +23,7 @@
    	<visual name="visual">
           <geometry>
             <box>
-              <size>15 1 5</size>
+              <size>15 1 4</size>
             </box>
           </geometry>
         <material>
@@ -46,11 +46,11 @@
     </link>
 
     <link name="link1">
-			<pose frame=''>6.35 -7 0 0 -0 3.14</pose>
+			<pose frame=''>5.85 -9 2 0 -0 3.14</pose>
         <collision name="box_collision">
           <geometry>
             <box>
-              <size>15 1 5</size>
+              <size>15 1 4</size>
             </box>
           </geometry>
       <surface>
@@ -66,7 +66,7 @@
    	<visual name="visual">
           <geometry>
             <box>
-              <size>15 1 5</size>
+              <size>15 1 4</size>
             </box>
           </geometry>
         <material>
@@ -90,11 +90,11 @@
 
 
     <link name="link2">
-			<pose frame=''>14.3 -2.4 0 0 -0 1.57</pose>
+			<pose frame=''>13.8 -3.4 2 0 -0 1.57</pose>
         <collision name="box_collision">
           <geometry>
             <box>
-              <size>10 1 5</size>
+              <size>10 1 4</size>
             </box>
           </geometry>
       <surface>
@@ -110,7 +110,7 @@
    	<visual name="visual">
           <geometry>
             <box>
-              <size>10 1 5</size>
+              <size>10 1 4</size>
             </box>
           </geometry>
         <material>
@@ -133,11 +133,11 @@
     </link>
 
     <link name="link3">
-			<pose frame=''>-1.55 -2.45 0 0 -0 1.57</pose>
+			<pose frame=''>-2.05 -3.45 2 0 -0 1.57</pose>
         <collision name="box_collision">
           <geometry>
             <box>
-              <size>10 1 5</size>
+              <size>10 1 4</size>
             </box>
           </geometry>
       <surface>
@@ -153,7 +153,7 @@
    	<visual name="visual">
           <geometry>
             <box>
-              <size>10 1 5</size>
+              <size>10 1 4</size>
             </box>
           </geometry>
         <material>

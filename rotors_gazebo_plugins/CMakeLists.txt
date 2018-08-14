@@ -173,6 +173,7 @@ target_link_libraries(mav_msgs_rotors ${PROTOBUF_LIBRARY} gazebo_msgs)
 # NOTE: This is deprecated, should be using target_link_libraries instead
 link_libraries(mav_msgs_rotors)
 
+
 # ============================================== #
 # ==================== CATKIN ================== #
 # ============================================== #
@@ -500,6 +501,30 @@ if (NOT NO_ROS)
   add_dependencies(rotors_gazebo_wind_plugin ${catkin_EXPORTED_TARGETS})
 endif()
 list(APPEND targets_to_install rotors_gazebo_wind_plugin)
+
+#========================================= WIND GUST PLUGIN ==========================================//
+add_library(rotors_gazebo_wind_gust_plugin SHARED src/gazebo_wind_gust_plugin.cpp)
+target_link_libraries(rotors_gazebo_wind_gust_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+if (NOT NO_ROS)
+  add_dependencies(rotors_gazebo_wind_gust_plugin ${catkin_EXPORTED_TARGETS})
+endif()
+list(APPEND targets_to_install rotors_gazebo_wind_gust_plugin)
+
+#========================================= RANDOM POSITION PLUGIN ==========================================//
+add_library(rotors_gazebo_random_position_plugin SHARED src/gazebo_random_position_plugin.cpp)
+target_link_libraries(rotors_gazebo_random_position_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+if (NOT NO_ROS)
+  add_dependencies(rotors_gazebo_random_position_plugin ${catkin_EXPORTED_TARGETS})
+endif()
+list(APPEND targets_to_install rotors_gazebo_random_position_plugin)
+
+#========================================= ANGULAR VELOCITY PLUGIN ==========================================//
+add_library(rotors_gazebo_angular_vel_plugin SHARED src/gazebo_angular_vel_plugin.cpp)
+target_link_libraries(rotors_gazebo_angular_vel_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+if (NOT NO_ROS)
+  add_dependencies(rotors_gazebo_angular_vel_plugin ${catkin_EXPORTED_TARGETS})
+endif()
+list(APPEND targets_to_install rotors_gazebo_angular_vel_plugin)
 
 # =============================================================================================== #
 # ======================================= EXTERNAL LIBRARIES ==================================== #
