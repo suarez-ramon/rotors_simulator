@@ -296,7 +296,7 @@
       </collision>
     </link>
 		<link name='link_3'>
-      <pose frame=''>0 0.08 2.05 1.57 -1.57 0</pose>
+      <pose frame=''>0 0.025 2.05 1.57 -1.57 0</pose>
       <inertial>
         <mass>1</mass>
         <inertia>
@@ -317,7 +317,7 @@
         <geometry>
           <mesh>
             <uri>model://dynamic_gate/meshes/obstacle.stl</uri>
-            <scale>1 1 1</scale>
+            <scale>1000 1000 300</scale>
           </mesh>
         </geometry>
         <material>
@@ -394,7 +394,7 @@
       </collision>
     </link>
 		<joint type="revolute" name="moving">
-      <pose>0.65 0.005 0.0775 0 0 0</pose>
+      <pose>0.65 0.005 0.0255 0 0 0</pose>
       <child>link_3</child>
       <parent>link_1</parent>
       <axis>
@@ -429,7 +429,7 @@
 			<activate_roll>0</activate_roll>
     </plugin>
 		<plugin name="gazebo_angular_vel_plugin" filename="librotors_gazebo_angular_vel_plugin.so">
-			<speed>1.0</speed>
+			<speed>3.14</speed>
     </plugin>
   </model>
 </sdf>
