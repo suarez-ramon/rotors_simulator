@@ -75,10 +75,10 @@
   </xacro:camera_macro>
 
 
-  <!-- <xacro:hokuyo_lidar
+  <!--<xacro:hokuyo_lidar
     namespace="${namespace}"
     parent_link="${namespace}/base_link" >
-  </xacro:hokuyo_lidar> -->
+  </xacro:hokuyo_lidar>-->
 
 <!--Contact sensor 1 Laser 
 <joint name="contact_sensor_1_joint" type="fixed">
